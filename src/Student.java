@@ -1,8 +1,12 @@
 
+
+
 public class Student extends Thread {
+
 	private final int number;
 	private final Mensa mensa;
 	private final long RANDOM_MULTIPLICATOR=100;
+
 	
 	private Student(int number, Mensa mensa){
 		this.number=number;
@@ -19,19 +23,34 @@ public class Student extends Thread {
 	}
 	
 	private void eat(){
-		long eatingTime=(long) Math.random()*RANDOM_MULTIPLICATOR;
+	   
+		long eatingTime=(long) (Math.random()*RANDOM_MULTIPLICATOR);
 		try{
+		    System.out.println(this.toString() + " is eating for " + eatingTime);
 			Thread.sleep(eatingTime);
 		}
 		catch (InterruptedException e){
-			e.printStackTrace();
+		    System.out.println("EAT INTERRUPT BY: " + this);
+			this.interrupt();
 		}
 	}
 	
+	private void study() {
+	    long studyTime=(long) (Math.random()*RANDOM_MULTIPLICATOR);
+	    try {
+	        System.out.println(this + " is studying for " + studyTime);
+            Thread.sleep(studyTime);
+        } catch (InterruptedException e) {
+            System.out.println("STUDY INTERRUPT BY: " + this);
+            this.interrupt();
+        }
+	}
+	
 	public void run(){
-		while(true){
+		while(!this.isInterrupted()){
 			mensa.cashPoint().queueUp(this);
 			eat();
+			study();
 		}
 	}
 
