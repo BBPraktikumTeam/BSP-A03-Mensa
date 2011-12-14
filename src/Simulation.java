@@ -4,7 +4,7 @@ public class Simulation {
 	/**
 	 * @param args
 	 */
-	private static final long SIMULATION_TIME=1;
+	private static final long SIMULATION_TIME=10000;
 	private static final long PAYMENT_DURATION=1000;
 	private static final int NUMBER_OF_STUDENTS=10;
 	private static final int NUMBER_OF_CASHPOINTS=3;
@@ -27,8 +27,10 @@ public class Simulation {
 		catch (InterruptedException e){
 			e.printStackTrace();
 		}
-		mensa.interrupt();
 		System.out.println("------Mensa geschlossen-------");
+		
+		mensa.interrupt();
+		
 		
 		
 	}

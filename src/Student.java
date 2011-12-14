@@ -22,26 +22,16 @@ public class Student extends Thread {
 		return "Student Nr. "+number;
 	}
 	
-	private void eat(){
-	   
-		long eatingTime=(long) (Math.random()*RANDOM_MULTIPLICATOR);
-		try{
-		    System.out.println(this.toString() + " is eating for " + eatingTime);
-			Thread.sleep(eatingTime);
-		}
-		catch (InterruptedException e){
-		    System.out.println("EAT INTERRUPT BY: " + this);
-			this.interrupt();
-		}
-	}
 	
-	private void study() {
-	    long studyTime=(long) (Math.random()*RANDOM_MULTIPLICATOR);
-	    try {
-	        System.out.println(this + " is studying for " + studyTime);
-            Thread.sleep(studyTime);
-        } catch (InterruptedException e) {
-            System.out.println("STUDY INTERRUPT BY: " + this);
+	private void threadSleep(String s) {
+	    System.out.println(s);
+	    long sleepTime=(long) (Math.random()*RANDOM_MULTIPLICATOR);
+	    try{
+           
+            Thread.sleep(sleepTime);
+        }
+        catch (InterruptedException e){
+            
             this.interrupt();
         }
 	}
@@ -49,9 +39,10 @@ public class Student extends Thread {
 	public void run(){
 		while(!this.isInterrupted()){
 			mensa.cashPoint().queueUp(this);
-			eat();
-			study();
+			threadSleep(this + " is eating");
+			threadSleep(this + " is studying");
 		}
+		
 	}
 
 }

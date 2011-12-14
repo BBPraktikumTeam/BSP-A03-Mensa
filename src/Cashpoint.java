@@ -30,7 +30,7 @@ public class Cashpoint {
 			Thread.sleep(paymentDuration);
 		}
 		catch (InterruptedException e){
-			e.printStackTrace();
+			student.interrupt();
 		}
 		queue.remove(student);
         semaphore.release();
