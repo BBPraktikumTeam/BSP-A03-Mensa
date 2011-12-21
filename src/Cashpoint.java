@@ -21,10 +21,11 @@ public class Cashpoint {
 	}
 	
 	public void queueUp(Student student){
-	    
+	  
 		queue.add(student);
 		System.out.println(student + " anstellen an: " + this);
         System.out.println("Schlange von "+ this +" "+  this.queue);
+	
 		try{
 			semaphore.acquire();
 			Thread.sleep(paymentDuration);

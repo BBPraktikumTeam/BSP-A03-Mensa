@@ -15,43 +15,43 @@ public class Mensa extends Thread {
     }
 
     public void add(Cashpoint kasse) {
-       
+
         cashpoints.add(kasse);
     }
 
     public void add(Student student) {
-       
+
         students.add(student);
     }
 
     public Cashpoint cashPoint() {
-       
+
         Cashpoint result = null;
         int minQueue = Integer.MAX_VALUE;
         synchronized (this) {
-        for (Cashpoint cashpoint : cashpoints) {
-            if (cashpoint.queueLength() < minQueue) {
-                result = cashpoint;
-                minQueue = cashpoint.queueLength();
+            for (Cashpoint cashpoint : cashpoints) {
+                if (cashpoint.queueLength() < minQueue) {
+                    result = cashpoint;
+                    minQueue = cashpoint.queueLength();
+                }
             }
-        }  }
+        }
         return result;
-      
+
     }
 
     @Override
     public void start() {
 
         for (Student student : students) {
-  
+
             student.start();
         }
-       
+
         super.start();
         System.out.println("Start the Action");
     }
 
-   
     public void interrupt() {
         synchronized (this) {
             System.out.println("INTERUPT MENSA!!!!");
