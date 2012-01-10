@@ -27,8 +27,8 @@ public class Simulation {
 		catch (InterruptedException e){
 			e.printStackTrace();
 		}
-		System.out.println("------Mensa geschlossen-------");
 		
+		System.out.println("------Mensa geschlossen-------");
 		mensa.interrupt();
 		
 		
